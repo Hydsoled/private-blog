@@ -1,1 +1,16 @@
-<p>posts works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let post of posts">
+      <div class="panel panel-primary">
+        <div class="panel-heading">{{post.title}}</div>
+        <div class="panel-body"><img src="{{post.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="reacts">
+          <div class="react">{{post.reacts.like}} Like</div>
+          <div class="react">{{post.reacts.dislike}} Dislike</div>
+          <div class="react">{{post.reacts.love}} Love</div>
+        </div>
+        <div class="panel-footer">{{post.description}}</div>
+      </div>
+    </div>
+  </div>
+</div><br>
