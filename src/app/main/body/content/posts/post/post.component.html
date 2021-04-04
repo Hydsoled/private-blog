@@ -1,1 +1,12 @@
-<p>post works!</p>
+<div style="height: 400px; width: 300px" class="panel panel-primary">
+  <div class="panel-heading">{{post.title}}</div>
+  <div class="panel"><img src="{{post.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+  <div class="reacts">
+    <div class="react">{{post.reacts.like}}
+      <div>
+        <a><img src="https://img.pngio.com/asian-gods-subjects-rijksstudio-rijksmuseum-like-this-png-430_171.png" height="22px" width="70px" /></a>
+      </div>
+    </div>
+  </div>
+  <div class="description">{{post.description}}</div>
+</div>

@@ -18,7 +18,7 @@ export class PostService {
   constructor() {
   }
 
-  getPost(): Post {
+  getPost(id: number): Post {
     return {
       id: null,
       title: this.postTitle,

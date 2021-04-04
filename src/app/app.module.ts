@@ -14,6 +14,7 @@ import { FooterComponent } from './main/footer/footer.component';
 import { MainComponent } from './main/main.component';
 import {AboutComponent} from './main/body/content/about/about.component';
 import { HomeComponent } from './main/body/content/home/home.component';
+import {PostResolver} from './main/body/content/posts/post/post-resolver.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HomeComponent } from './main/body/content/home/home.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PostResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {

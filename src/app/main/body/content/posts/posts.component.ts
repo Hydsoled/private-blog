@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Post} from './post/post.model';
 import {PostService} from '../post.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -10,11 +11,11 @@ import {PostService} from '../post.service';
 export class PostsComponent implements OnInit {
   posts: Post[] = [];
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService, private router: Router) {
   }
 
   ngOnInit(): void {
-    const singlePost = this.postService.getPost();
+    const singlePost = this.postService.getPost(1);
     console.log(singlePost.description);
     for (let i = 0; i < 7; i++) {
       this.posts.push({
@@ -28,6 +29,10 @@ export class PostsComponent implements OnInit {
         updatedAt: singlePost.createdAt,
       });
     }
+  }
+
+  onLoadPost(post: Post): void {
+    this.router.navigate(['/post', post.title, post.description]);
   }
 
 }
