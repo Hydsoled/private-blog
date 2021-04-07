@@ -2,7 +2,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {React} from './react.model';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {PostService} from '../../post.service';
+import {PostService} from '../post.service';
 
 interface Post {
   id: string;
@@ -11,6 +11,7 @@ interface Post {
   image: string;
   reacts: React;
   author: string;
+  category: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -21,7 +22,7 @@ export class PostResolver implements Resolve<Post> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post> | Promise<Post> | Post {
-    return this.postService.getPost(+route.params.id);
+    return this.postService.getPost(route.params.id);
   }
 
 }

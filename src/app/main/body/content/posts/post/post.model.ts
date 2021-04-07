@@ -8,6 +8,7 @@ export class Post {
     public image: string,
     public reacts: React,
     public author: string,
+    public category: string,
     public createdAt: Date,
     public updatedAt: Date,
   ) {

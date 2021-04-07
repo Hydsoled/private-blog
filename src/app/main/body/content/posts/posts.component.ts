@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {Post} from './post/post.model';
-import {PostService} from '../post.service';
+import {PostService} from './post.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -15,24 +15,11 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const singlePost = this.postService.getPost(1);
-    console.log(singlePost.description);
-    for (let i = 0; i < 7; i++) {
-      this.posts.push({
-        id: singlePost.id,
-        title: singlePost.title,
-        description: singlePost.description,
-        image: singlePost.image,
-        reacts: singlePost.reacts,
-        author: singlePost.author,
-        createdAt: singlePost.createdAt,
-        updatedAt: singlePost.createdAt,
-      });
-    }
+    this.posts = this.postService.getAllPosts();
   }
 
   onLoadPost(post: Post): void {
-    this.router.navigate(['/post', post.title, post.description]);
+    this.router.navigate(['/posts', post.id, post.title]);
   }
 
 }
