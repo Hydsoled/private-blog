@@ -49,32 +49,28 @@ export class AuthService {
   }
 
   handleAuthentication(email, id, token, expDate): void {
-    const expirationDate = new Date(new Date().getTime() + expDate * 1000);
-    const user = new User(
-      email,
-      id,
-      token,
-      expirationDate
-    );
-    document.cookie = 'user=' + JSON.stringify(user) + ';';
-    this.user.next(user);
+    const now = new Date();
+    now.setTime(now.getTime() + expDate * 1000);
+    const expirationDate = now.toUTCString();
+    const user = new User(id, token);
+    this.setCookie(user, expirationDate);
   }
 
   autoLogin(): void {
-    const cookie = document.cookie.substring(5);
-    if (!cookie) {
-      return;
-    }
-    const userData: {
-      email: string;
-      id: string;
-      _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(cookie);
-    const loadUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
-    if (loadUser.token) {
-      console.log('hey');
-      this.user.next(loadUser);
-    }
+    const cookie = document.cookie;
+    const [key, value] = cookie.split('=');
+    this.user.next({id: key, token: value});
+  }
+
+  setCookie(user, exDate): void {
+    document.cookie = user.id + '=' + user.token + ';expires=' + exDate;
+    this.authenticatedUser = true;
+  }
+
+  deleteCookie(): void {
+    const cookie = document.cookie;
+    const [key, value] = cookie.split('=');
+    const now = new Date();
+    document.cookie = key + '=' + value + ';expires=' + now.toUTCString();
   }
 }

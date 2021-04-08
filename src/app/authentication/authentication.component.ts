@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {AuthDataInterface} from './authData.interface';
 
 @Component({
@@ -10,9 +10,10 @@ import {AuthDataInterface} from './authData.interface';
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss']
 })
-export class AuthenticationComponent implements OnInit {
+export class AuthenticationComponent implements OnInit, OnDestroy {
   loginMode = true;
   error: string;
+  subscriptionAuth: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -32,7 +33,7 @@ export class AuthenticationComponent implements OnInit {
     } else {
       authSub = this.authService.signIn(user.email, user.password);
     }
-    authSub.subscribe(
+    this.subscriptionAuth = authSub.subscribe(
       (res) => {
         this.router.navigate(['/']);
       },
@@ -67,6 +68,10 @@ export class AuthenticationComponent implements OnInit {
         return 'Unknown error';
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionAuth.unsubscribe();
   }
 
 }
