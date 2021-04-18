@@ -16,7 +16,6 @@ export class NavigationComponent implements OnInit {
   }
 
   onClickLogout(): void {
-    this.authService.authenticatedUser = false;
     this.authService.deleteCookie();
     this.router.navigate(['/auth']);
   }

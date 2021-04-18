@@ -13,7 +13,7 @@ import {PostComponent} from './main/body/content/posts/post/post.component';
 import {FooterComponent} from './main/footer/footer.component';
 import {MainComponent} from './main/main.component';
 import {AboutComponent} from './main/body/content/about/about.component';
-import {HomeComponent} from './main/body/content/home/home.component';
+import {ChatComponent} from './main/body/content/chat/chat.component';
 import {PostResolver} from './main/body/content/posts/post/post-resolver.service';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -32,7 +32,7 @@ import {AuthGuard} from './authentication/auth-guard.service';
     FooterComponent,
     MainComponent,
     AboutComponent,
-    HomeComponent
+    ChatComponent
   ],
   imports: [
     BrowserModule,

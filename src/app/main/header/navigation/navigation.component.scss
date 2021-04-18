@@ -1,0 +1,50 @@
+.cont {
+  display: flex;
+  flex-direction: row;
+
+  div {
+    position: relative;
+    float: left;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  a {
+    padding: 10px;
+  }
+
+  div::after {
+    content: "";
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+    bottom: -10px;
+    width: 1px;
+    border: 2px solid black;
+    transition: width 0.1s;
+  }
+
+  div:hover:after {
+    content: "";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    border: 2px solid black;
+    transition: width 0.5s;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .cont div{
+    font-size: 15px;
+    margin: 5px;
+  }
+}

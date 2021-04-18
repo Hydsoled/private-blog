@@ -1,3 +1,26 @@
-<div class="container">
-  <app-navigation></app-navigation>
+<div class="full-main-header">
+  <div class="main-content">
+    <div class="top-header">
+      <div>
+        <p>Hydsoled's blog</p>
+      </div>
+      <div>
+        <div class="social">
+          <div><a target="_blank" href="https://www.facebook.com/hydsoled/"><img [src]="'/assets/fb.png'" alt="facebook"></a></div>
+          <div><a target="_blank" href="https://www.instagram.com/hydsoled/"><img [src]="'/assets/instagram.png'" alt="instagram"></a></div>
+          <div><a target="_blank" href="https://www.linkedin.com/in/hydsoled/"><img [src]="'/assets/linkedin.png'" alt="linkedin"></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-header">
+      <div>
+        <a routerLink="/posts">
+          <img [src]="'/assets/blog.png'" alt="facebook" routerLink="/posts">
+        </a>
+      </div>
+      <div>
+        <app-navigation></app-navigation>
+      </div>
+    </div>
+  </div>
 </div>

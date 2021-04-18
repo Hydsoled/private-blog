@@ -6,7 +6,7 @@
         <div class="panel"><img src="{{post.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="reacts">
           <div class="react">{{post.reacts.like}}
-            <div>
+            <div style="cursor: pointer" (click)="handleLike(post.id)">
               <a><img src="https://img.pngio.com/asian-gods-subjects-rijksstudio-rijksmuseum-like-this-png-430_171.png" height="22px" width="70px" /></a>
             </div>
           </div>

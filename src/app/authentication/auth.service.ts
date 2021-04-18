@@ -49,21 +49,26 @@ export class AuthService {
   }
 
   handleAuthentication(email, id, token, expDate): void {
-    const now = new Date();
-    now.setTime(now.getTime() + expDate * 1000);
-    const expirationDate = now.toUTCString();
     const user = new User(id, token);
-    this.setCookie(user, expirationDate);
+    this.setCookie(user, expDate);
   }
 
   autoLogin(): void {
+    const cookie = this.getCookie();
+    this.user.next({id: cookie.key, token: cookie.value});
+  }
+
+  getCookie(): { key: string, value: string } {
     const cookie = document.cookie;
     const [key, value] = cookie.split('=');
-    this.user.next({id: key, token: value});
+    return {key, value};
   }
 
   setCookie(user, exDate): void {
-    document.cookie = user.id + '=' + user.token + ';expires=' + exDate;
+    const now = new Date();
+    now.setTime(now.getTime() + exDate * 1000);
+    const expirationDate = now.toUTCString();
+    document.cookie = user.id + '=' + user.token + ';expires=' + expirationDate;
     this.authenticatedUser = true;
   }
 
@@ -72,5 +77,6 @@ export class AuthService {
     const [key, value] = cookie.split('=');
     const now = new Date();
     document.cookie = key + '=' + value + ';expires=' + now.toUTCString();
+    this.authenticatedUser = false;
   }
 }

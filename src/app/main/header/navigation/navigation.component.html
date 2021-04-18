@@ -1,25 +1,5 @@
-<div class="container-fluid">
-  <nav class="navbar navbar-inverse">
-    <div class="navbar-header">
-      <a class="navbar-brand" routerLink="/">Dato's blog</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
-      <li routerLinkActive="active"><a routerLink="/posts">News feed</a></li>
-      <li style="cursor: pointer">
-        <a style="padding: 0">
-          <div class="dropdown">
-            <div class="dropdown-toggle" style="padding: 14px" data-toggle="dropdown">Categories</div>
-            <ul class="dropdown-menu nav">
-              <li><a href="#">HTML</a></li>
-              <li><a href="#">CSS</a></li>
-              <li><a href="#">JavaScript</a></li>
-            </ul>
-          </div>
-        </a>
-      </li>
-      <li routerLinkActive="active"><a routerLink="/about">About me</a></li>
-      <li style="cursor: pointer" (click)="onClickLogout()"><a>Logout</a></li>
-    </ul>
-  </nav>
+<div class="cont">
+  <div><a routerLink="/posts">News feed</a></div>
+  <div><a routerLink="/chat">Chat</a></div>
+  <div><a routerLink="/about">About me</a></div>
 </div>

@@ -29,7 +29,7 @@ export class PostService {
           title: this.postTitle + i,
           description: this.postDescription,
           image: this.postImageUrl,
-          reacts: this.reacts,
+          reacts: new React(this.reacts.like, this.reacts.dislike, this.reacts.love),
           author: null,
           category: null,
           createdAt: null,

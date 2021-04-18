@@ -12,6 +12,7 @@ export class PostsComponent implements OnInit {
   posts: Post[] = [];
 
   constructor(private postService: PostService, private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -20,6 +21,14 @@ export class PostsComponent implements OnInit {
 
   onLoadPost(post: Post): void {
     this.router.navigate(['/posts', post.id, post.title]);
+  }
+
+  handleLike(postId: string): void {
+    this.posts.filter((post) => {
+      if (post.id === postId) {
+        post.reacts.like++;
+      }
+    });
   }
 
 }
