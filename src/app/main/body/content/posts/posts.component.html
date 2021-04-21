@@ -7,7 +7,7 @@
         <div class="reacts">
           <div class="react">{{post.reacts.like}}
             <div style="cursor: pointer" (click)="handleLike(post.id)">
-              <a><img src="https://img.pngio.com/asian-gods-subjects-rijksstudio-rijksmuseum-like-this-png-430_171.png" height="22px" width="70px" /></a>
+              <a><img [src]="(likes.includes(post.id)) ? 'assets/dislike.png' : 'assets/like.png'" height="22px" width="22px"/></a>
             </div>
           </div>
         </div>
@@ -15,4 +15,4 @@
       </div>
     </div>
   </div>
-</div><br>
+</div>

@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 })
 export class PostsComponent implements OnInit {
   posts: Post[] = [];
+  likes = [];
 
   constructor(private postService: PostService, private router: Router) {
 
@@ -26,7 +27,17 @@ export class PostsComponent implements OnInit {
   handleLike(postId: string): void {
     this.posts.filter((post) => {
       if (post.id === postId) {
-        post.reacts.like++;
+        if (this.likes.includes(post.id)) {
+          post.reacts.like--;
+          this.likes = this.likes.filter((val) => {
+            if (val !== post.id) {
+              return val;
+            }
+          });
+        } else {
+          post.reacts.like++;
+          this.likes.push(post.id);
+        }
       }
     });
   }
