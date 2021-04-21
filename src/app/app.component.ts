@@ -8,15 +8,19 @@ import {AuthService} from './authentication/auth.service';
 })
 export class AppComponent implements OnInit {
   auth = false;
+
   constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.authService.autoLogin();
     this.authService.user.subscribe((user) => {
-      if (user.token) {
+      if (user) {
         this.authService.authenticatedUser = !!user.token;
         this.auth = !!user.token;
+      } else {
+        this.authService.authenticatedUser = false;
+        this.auth = false;
       }
     });
   }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AuthDataInterface} from './authData.interface';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable, Subject, BehaviorSubject} from 'rxjs';
 import {User} from './user.model';
 import {tap} from 'rxjs/operators';
 
@@ -51,6 +51,7 @@ export class AuthService {
   handleAuthentication(email, id, token, expDate): void {
     const user = new User(id, token);
     this.setCookie(user, expDate);
+    this.user.next({id: id, token});
   }
 
   autoLogin(): void {
@@ -78,5 +79,6 @@ export class AuthService {
     const now = new Date();
     document.cookie = key + '=' + value + ';expires=' + now.toUTCString();
     this.authenticatedUser = false;
+    this.user.next(null);
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../../../authentication/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+  logout(): void{
+    this.authService.deleteCookie();
+    this.router.navigate(['auth']);
   }
 
 }
