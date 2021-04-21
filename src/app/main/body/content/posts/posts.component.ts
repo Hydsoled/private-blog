@@ -21,7 +21,7 @@ export class PostsComponent implements OnInit {
   }
 
   onLoadPost(post: Post): void {
-    this.router.navigate(['/posts', post.id, post.title]);
+    this.router.navigate(['posts', post.id, post.title]);
   }
 
   handleLike(postId: string): void {

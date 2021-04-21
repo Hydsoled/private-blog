@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './authentication/auth.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  auth = false;
   constructor(private authService: AuthService) {
   }
 
@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     this.authService.user.subscribe((user) => {
       if (user.token) {
         this.authService.authenticatedUser = !!user.token;
+        this.auth = !!user.token;
       }
     });
   }
