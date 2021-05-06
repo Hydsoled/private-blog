@@ -6,7 +6,7 @@ import {AboutComponent} from './content/about/about.component';
 import {ChatComponent} from './content/chat/chat.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import {BodyRoutingModule} from './body-routing.module';
+import {MainRoutingModule} from './main-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,11 +16,11 @@ import {BodyRoutingModule} from './body-routing.module';
     AboutComponent,
     ChatComponent
   ],
-  imports: [RouterModule, CommonModule, BodyRoutingModule],
+  imports: [RouterModule, CommonModule, MainRoutingModule],
   exports: [
     ContentComponent,
-  ]
+  ],
 })
-export class BodyModule {
+export class MainModule {
 
 }

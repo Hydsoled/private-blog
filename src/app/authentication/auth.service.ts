@@ -4,6 +4,7 @@ import {AuthDataInterface} from './authData.interface';
 import {Observable, Subject, BehaviorSubject} from 'rxjs';
 import {User} from './user.model';
 import {tap} from 'rxjs/operators';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   authenticatedUser = false;
   user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookieService: CookieService) {
   }
 
   signUp(mail: string, pass: string): Observable<AuthDataInterface> {
@@ -50,34 +51,29 @@ export class AuthService {
 
   handleAuthentication(email, id, token, expDate): void {
     const user = new User(id, token);
-    this.setCookie(user, expDate);
-    this.user.next({id: id, token});
+    this.setCookie('_ID', user.id, expDate);
+    this.setCookie('SESSID', user.token, expDate);
+    this.user.next(user);
   }
 
   autoLogin(): void {
     const cookie = this.getCookie();
-    this.user.next({id: cookie.key, token: cookie.value});
+    this.user.next({id: cookie._ID, token: cookie.SESSID});
   }
 
-  getCookie(): { key: string, value: string } {
-    const cookie = document.cookie;
-    const [key, value] = cookie.split('=');
-    return {key, value};
+  getCookie(): any {
+    return this.cookieService.getAll();
   }
 
-  setCookie(user, exDate): void {
+  setCookie(key, value, exDate): void {
     const now = new Date();
     now.setTime(now.getTime() + exDate * 1000);
-    const expirationDate = now.toUTCString();
-    document.cookie = user.id + '=' + user.token + ';expires=' + expirationDate;
+    this.cookieService.set(key, value, now, '/', 'localhost', true, 'Strict');
     this.authenticatedUser = true;
   }
 
   deleteCookie(): void {
-    const cookie = document.cookie;
-    const [key, value] = cookie.split('=');
-    const now = new Date();
-    document.cookie = key + '=' + value + ';expires=' + now.toUTCString();
+    this.cookieService.deleteAll();
     this.authenticatedUser = false;
     this.user.next(null);
   }

@@ -1,19 +1,17 @@
 import {NgModule} from '@angular/core';
 import {HeaderComponent} from './header.component';
 import {NavigationComponent} from './navigation/navigation.component';
-import {BodyRoutingModule} from '../body/body-routing.module';
+import {MainRoutingModule} from '../main-routing.module';
 
 @NgModule({
   declarations: [
     HeaderComponent, NavigationComponent
   ],
   imports: [
-    BodyRoutingModule
+    MainRoutingModule
   ],
   exports: [
     HeaderComponent, NavigationComponent
   ]
 })
-export class HeaderModule {
-
-}
+export class HeaderModule {}

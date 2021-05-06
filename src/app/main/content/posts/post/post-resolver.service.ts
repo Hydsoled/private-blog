@@ -22,6 +22,7 @@ export class PostResolver implements Resolve<Post> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Post> | Promise<Post> | Post {
+    this.postService.getAllPosts();
     return this.postService.getPost(route.params.id);
   }
 
