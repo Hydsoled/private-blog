@@ -1,0 +1,65 @@
+#webchat {
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .chatbox {
+    overflow-y: auto;
+    height: 100%;
+
+    #users, {
+      margin: 20px;
+
+      .user {
+        margin: 20px;
+        display: inline-block;
+
+        span {
+          margin-left: 4px;
+
+          img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+          }
+        }
+      }
+    }
+
+    #messages {
+      display: flex;
+      flex-direction: column;
+
+      .message {
+        margin: 10px 20px 0 10px;
+
+        span:nth-child(2) {
+          color: white;
+          background-color: #3f3dff;
+          border-radius: 30px;
+          padding: 7px;
+        }
+
+        span {
+          margin-left: 20px;
+
+          img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50px;
+          }
+        }
+      }
+
+      .them {
+        align-self: flex-end;
+        margin-top: 12px;
+
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+}

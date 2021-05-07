@@ -6,7 +6,7 @@ import {React} from './post/react.model';
   providedIn: 'root'
 })
 export class PostService {
-  postImageUrl = 'https://media-exp1.licdn.com/dms/image/C4D03AQGwKPei9F7__Q/profile-displayphoto-shrink_800_800/0/1602147849378?e=1622678400&v=beta&t=HTFicOmjUy9sQD-quCSrfVmDHzcdqtT9-fFtXPojAA0';
+  postImageUrl = 'assets/dato.jpeg';
   postTitle = 'Dato';
   postDescription = 'Naruto da Dato magaria';
   postId = '27';

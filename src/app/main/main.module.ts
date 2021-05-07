@@ -7,6 +7,7 @@ import {ChatComponent} from './content/chat/chat.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {MainRoutingModule} from './main-routing.module';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {MainRoutingModule} from './main-routing.module';
     AboutComponent,
     ChatComponent
   ],
-  imports: [RouterModule, CommonModule, MainRoutingModule],
+  imports: [RouterModule, CommonModule, MainRoutingModule, FormsModule],
   exports: [
     ContentComponent,
   ],

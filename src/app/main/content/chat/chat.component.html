@@ -1,3 +1,35 @@
-<div>
-  gamarjoba samyaro
+<div id="webchat">
+  <div class="chatbox" #scrollBar>
+    <div id="users">
+      <div class="user">
+        <span><img [src]="'assets/dato.jpeg'"></span>
+        <span>David</span>
+      </div>
+      <div class="user">
+        <span><img [src]="'assets/dato.jpeg'"></span>
+        <span>Hydsoled</span>
+      </div>
+    </div>
+    <hr>
+    <div id="messages">
+      <div
+        class="message"
+        *ngFor="let message of messages"
+        [ngClass]="{them: message.who === 0}"
+      >
+        <span><img [src]="'assets/dato.jpeg'"></span>
+        <span>{{message.text}}</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div id="texts">
+    <form (ngSubmit)="onSubmit(send)" #send="ngForm" autocomplete="off">
+      <div class="form-group">
+        <label>Message</label>
+        <input type="text"class="form-control" ngModel name="msg"/>
+      </div>
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
 </div>
