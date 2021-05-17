@@ -1,6 +1,8 @@
 export class User {
   constructor(
     public id: string,
-    public token: string
-  ) {}
+    public nickname: string,
+    public email: string
+  ) {
+  }
 }

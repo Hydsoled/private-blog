@@ -15,13 +15,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.autoLogin();
     this.authService.user.subscribe((user) => {
-      if (user) {
-        this.authService.authenticatedUser = !!user.token;
-        this.auth = !!user.token;
-      } else {
-        this.authService.authenticatedUser = false;
-        this.auth = false;
-      }
+      this.authService.authenticatedUser = user;
+      this.auth = user;
     });
   }
 }
